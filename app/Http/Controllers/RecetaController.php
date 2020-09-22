@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecetaController extends Controller
 {
+    //con este constructor se protege las vistas, es decir solo puede acceder a ellas usuarios
+    //autenticados
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class RecetaController extends Controller
      */
     public function index()
     {
-        //
+        return view('recetas.index');
     }
 
     /**
@@ -24,7 +31,7 @@ class RecetaController extends Controller
      */
     public function create()
     {
-        //
+        return view('recetas.create');
     }
 
     /**
@@ -35,7 +42,15 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'titulo' => 'required|min:6'
+        ]);
+        DB::table('recetas')->insert([
+            'titulo' => $data['titulo']
+        ]);
+        dd($request->all());
+        //de aqui una vez insertados los valores en la bd, se debe redireccionar ese post
+        return redirect()->action('RecetaController@index');
     }
 
     /**
