@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RecetaController extends Controller
 {
@@ -31,7 +32,12 @@ class RecetaController extends Controller
      */
     public function create()
     {
-        return view('recetas.create');
+        //Con este codigo se hace una consulta a la base de datos, en este caso le digo que me muestre los cam-
+        //pos de nombre y id de la tabla categoria_receta.
+        // DB::table('categoria_receta')->get()->pluck('nombre', 'id')->dd();
+        $categorias =  DB::table('categoria_receta')->get()->pluck('nombre', 'id');
+
+        return view('recetas.create')->with('categorias', $categorias);
     }
 
     /**
@@ -42,13 +48,22 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'titulo' => 'required|min:6'
+        $data = $request->validate([
+            'titulo' => 'required|min:6',
+            'preparacion' => 'required',
+            'ingredientes' => 'required',
+            //'imagen' => 'required|image',
+            'categoria' => 'required',
         ]);
         DB::table('recetas')->insert([
-            'titulo' => $data['titulo']
+            'titulo' => $data['titulo'],
+            'preparacion' => $data['preparacion'],
+            'ingredientes' => $data['ingredientes'],
+            'imagen' => 'imagen.jpg',
+            'user_id' => Auth::user()->id,
+            'categoria_id' => $data['categoria'],
         ]);
-        dd($request->all());
+        // dd($request->all());
         //de aqui una vez insertados los valores en la bd, se debe redireccionar ese post
         return redirect()->action('RecetaController@index');
     }
