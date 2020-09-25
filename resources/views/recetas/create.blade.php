@@ -10,7 +10,7 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
-        <form method="post" action="{{ route('recetas.store')}}" novalidate>
+        <form method="post" action="{{ route('recetas.store') }}" enctype="multipart/form-data" novalidate>
             @csrf
             <div class="form-group">
                 <label for="titulo">Titulo de la Receta</label>
@@ -62,7 +62,7 @@
             </div>
             <div class="form-group mt-4">
                 <label for="imagen">Eligen la Imagen</label>
-                <input type="file" id="imagen" class="form-control @error('imagen') is-invalid @enderror" name="imagen">
+                <input type="file" id="imagen" name="imagen" class="form-control @error('imagen') is-invalid @enderror">
                 @error('imagen')
                 <span class="invalid-feedback d-block" role="alert">
                     <strong>{{$message}}</strong>

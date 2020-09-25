@@ -26,7 +26,7 @@ class CreateRecetasTable extends Migration
             $table->text('preparacion');
             $table->string('imagen');
             $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que crea la receta');
-            $table->foreignId('categoria_id')->index('id')->on('categoria_receta')->comment('la categoria de la receta');
+            $table->foreignId('categoria_id')->references('id')->on('categoria_receta')->comment('la categoria de la receta');
             $table->timestamps();
         });
     }
@@ -38,6 +38,10 @@ class CreateRecetasTable extends Migration
      */
     public function down()
     {
+        //Schema::disableForeignKeyConstraints();
+        /*este codigo es util para cuando por error no se a asignado bien una columna y se quiere hacer un rollback a la migración y presenta conflictos
+    por tener llaves foraneas, entonces con este se deshabilitan las foraneas para hacer las correspondientes actualizaciones
+    a las tablas de la base de datos*/
         Schema::dropIfExists('categoria_receta');
         Schema::dropIfExists('recetas');
     }
