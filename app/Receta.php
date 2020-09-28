@@ -17,4 +17,9 @@ class Receta extends Model
         //con esto hago la relación de uno a uno
         return $this->belongsTo(CategoriaReceta::class);
     }
+    //obtiene la informacion del usuario via FK
+    public function autor()
+    {
+        return $this->belongsTo(User::class, 'user_id'); //el FK de esta tabla
+    }
 }
