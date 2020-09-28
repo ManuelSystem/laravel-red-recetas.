@@ -15,7 +15,8 @@ class RecetaController extends Controller
     //autenticados
     public function __construct()
     {
-        $this->middleware('auth');
+        //con esto laravel obliga a estar logueado al usuario para realizar los distintas acciones, con expcion del metodo show
+        $this->middleware('auth', ['except' => 'show']);
     }
     /**
      * Display a listing of the resource.
@@ -125,7 +126,10 @@ class RecetaController extends Controller
      */
     public function edit(Receta $receta)
     {
-        //
+        //De esta manera se obtiene las categorias con modelo
+        $categorias = CategoriaReceta::all(['id', 'nombre']);
+        //muestra los campos co los datos de la DB a editar
+        return view('recetas.edit', compact('categorias', 'receta'));
     }
 
     /**
