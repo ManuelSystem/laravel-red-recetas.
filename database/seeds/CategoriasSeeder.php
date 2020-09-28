@@ -12,42 +12,42 @@ class CategoriasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Comida Cucuteña',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Comida Paisa',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Comida Italiana',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Comida Costera',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Comida Colombiana',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Cortes',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Postres',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('categoria_receta')->insert([
+        DB::table('categoria_recetas')->insert([
             'nombre' => 'Ensaladas',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
