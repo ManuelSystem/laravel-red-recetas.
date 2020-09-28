@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Receta extends Model
 {
+    //campos que se agregaran
+    protected $fillable = [
+        'titulo', 'preparacion', 'ingredientes', 'imagen', 'categoria_id',
+    ];
+
     //obtiene la categoria de la receta via FK
     public function categoria()
     {

@@ -79,7 +79,18 @@ class RecetaController extends Controller
         $img->save();
 
         //almacenar en la base de datos(sin modelo)
-        DB::table('recetas')->insert([
+        /* DB::table('recetas')->insert([
+            'titulo' => $data['titulo'],
+            'preparacion' => $data['preparacion'],
+            'ingredientes' => $data['ingredientes'],
+            'imagen' => $ruta_imagen,
+            'user_id' => Auth::user()->id,
+            'categoria_id' => $data['categoria'],
+        ]); */
+
+        //almacenar en la base de datos(con modelo)
+        //lo que se indica como recetas, es la función que se encuentra en el modelo de User
+        Auth()->user()->recetas()->create([
             'titulo' => $data['titulo'],
             'preparacion' => $data['preparacion'],
             'ingredientes' => $data['ingredientes'],
@@ -87,6 +98,8 @@ class RecetaController extends Controller
             'user_id' => Auth::user()->id,
             'categoria_id' => $data['categoria'],
         ]);
+
+
         // dd($request->all());--con este codigo se puede verificar en formato json lo que se está guardando
         //de aqui una vez insertados los valores en la bd, se debe redireccionar ese post
         return redirect()->action('RecetaController@index');
@@ -100,7 +113,8 @@ class RecetaController extends Controller
      */
     public function show(Receta $receta)
     {
-        //
+        //se retorna lo que haya en el metodo show del web.php
+        return view('recetas.show', compact('receta'));
     }
 
     /**

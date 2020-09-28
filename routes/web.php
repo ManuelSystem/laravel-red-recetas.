@@ -24,6 +24,8 @@ Route::get('/recetas', 'RecetaController@index')->name('recetas.index');
 Route::get('/recetas/create', 'RecetaController@create')->name('recetas.create');
 //con el store es para cuando se quiere guardar los datos del formulario
 Route::post('/recetas', 'RecetaController@store')->name('recetas.store');
+//con el show es para cuando se quiere mostrar datos ya almacenados
+Route::get('/recetas/{receta}', 'RecetaController@show')->name('recetas.show');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
