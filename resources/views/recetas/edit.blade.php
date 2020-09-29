@@ -77,7 +77,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Agregar Receta">
+                <input type="submit" class="btn btn-primary" value="Actualizar Receta">
             </div>
         </form>
     </div>
