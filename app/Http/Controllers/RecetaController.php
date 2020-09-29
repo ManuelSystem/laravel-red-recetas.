@@ -141,6 +141,8 @@ class RecetaController extends Controller
      */
     public function update(Request $request, Receta $receta)
     {
+        //revisar el policy
+        $this->authorize('update', $receta);
         //validacion
         $data = $request->validate([
             'titulo' => 'required|min:6',
@@ -181,6 +183,12 @@ class RecetaController extends Controller
      */
     public function destroy(Receta $receta)
     {
-        //
+        //ejecutar el poliy
+        $this->authorize('delete', $receta);
+
+        //Eliminar la receta
+        $receta->delete();
+
+        return redirect()->action('RecetaController@index');
     }
 }
