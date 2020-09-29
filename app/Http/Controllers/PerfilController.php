@@ -46,7 +46,8 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        //
+        //mostrar un solo perfil
+        return view('perfiles.show', compact('perfil'));
     }
 
     /**
@@ -57,7 +58,8 @@ class PerfilController extends Controller
      */
     public function edit(Perfil $perfil)
     {
-        //
+        //editar datos de perfil
+        return view('perfiles.edit', compact('perfil'));
     }
 
     /**
@@ -69,7 +71,10 @@ class PerfilController extends Controller
      */
     public function update(Request $request, Perfil $perfil)
     {
-        //
+        //validacion de datos
+
+
+        //Guardar información
     }
 
     /**
