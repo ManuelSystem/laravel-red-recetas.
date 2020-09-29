@@ -3,6 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import VueSweetalert2 from "vue-sweetalert2";
 
 require("./bootstrap");
 
@@ -23,9 +24,13 @@ window.Vue = require("vue");
 
 //con esta linea se configura la habilitación de trix-editor, ya que vue piensa que es un componente, que al no
 //encontrarlo genera errores y no deja utilizar lo que ofrece trix-editor
+Vue.use(VueSweetalert2);
 Vue.config.ignoredElements = ["trix-editor", "trix-toolbar"];
 Vue.component("fecha-receta", require("./components/FechaReceta.vue").default);
-
+Vue.component(
+    "eliminar-receta",
+    require("./components/EliminarReceta.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
