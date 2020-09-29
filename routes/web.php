@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//con el index se trabaja para mostrar la ruta de vista principal
+//con el index se trabaja para mostrar la ruta de vista principal al usuario logueado
 Route::get('/recetas', 'RecetaController@index')->name('recetas.index');
 //con el create se busca mostrar la ruta de donde esta el formulario de recetas
 Route::get('/recetas/create', 'RecetaController@create')->name('recetas.create');
@@ -32,6 +32,13 @@ Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edi
 Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update');
 //con el destroy se puede eliminar de manera totalitaria los datos de registro de la base de datos
 Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
+
+//mostrar perfiles
+Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
+//con el edit es para cuando se quiere editar registros almacenados en la DB
+Route::get('/perfiles/{perfil}/edit', 'PerfilController@edit')->name('perfiles.edit');
+//con el update se puede actualizar de manera parcial o totalitaria los datos de registro
+Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
