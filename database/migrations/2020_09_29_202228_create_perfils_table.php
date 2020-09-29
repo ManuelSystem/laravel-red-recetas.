@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreatePerfilsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations.Post = posts, Client = clients
      *
      * @return void
      */
@@ -15,6 +15,9 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->text('biografia')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }
