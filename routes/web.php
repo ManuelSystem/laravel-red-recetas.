@@ -26,6 +26,8 @@ Route::get('/recetas/create', 'RecetaController@create')->name('recetas.create')
 Route::post('/recetas', 'RecetaController@store')->name('recetas.store');
 //con el show es para cuando se quiere mostrar datos ya almacenados
 Route::get('/recetas/{receta}', 'RecetaController@show')->name('recetas.show');
+//con el edit es para cuando se quiere editar registros almacenados en la DB
+Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edit');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

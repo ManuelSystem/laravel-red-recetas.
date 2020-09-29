@@ -14,14 +14,16 @@
         </p>
         <p>
             <span class="font-weight-bold text-primary">Autor:</span>
-            {{--TODO: mostrar el usuario--}}
-            {{$receta->user_id}}
+            {{$receta->autor->name}}
         </p>
         <p>
             <span class="font-weight-bold text-primary">Fecha:</span>
-            {{--TODO: mostrar la fecha--}}
-            {{$receta->created_at}}
+            @php
+                $fecha = $receta->created_at
+            @endphp
+            <fecha-receta fecha="{{$fecha}}"></fecha-receta>
         </p>
+
         <div class="ingredientes">
             <h2 class="my-3 text-primary">Ingredientes</h2>
             {{--de esta manera se elimina el codigo html con el que se guarda en la base de datos y se muestra solo la info--}}
