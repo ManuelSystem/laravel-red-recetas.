@@ -30,6 +30,8 @@ Route::get('/recetas/{receta}', 'RecetaController@show')->name('recetas.show');
 Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edit');
 //con el update se puede actualizar de manera parcial o totalitaria los datos de registro
 Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update');
+//con el destroy se puede eliminar de manera totalitaria los datos de registro de la base de datos
+Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
