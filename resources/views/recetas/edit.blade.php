@@ -11,8 +11,10 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
-        <form method="post" action="{{ route('recetas.store') }}" enctype="multipart/form-data" novalidate>
+        <form method="post" action="{{ route('recetas.update', ['receta' => $receta->id])}}" enctype="multipart/form-data" novalidate>
             @csrf
+
+            @method('put')
             <div class="form-group">
                 <label for="titulo">Titulo de la Receta</label>
                 <input type="text" name="titulo" class="form-control @error('titulo') is-invalid @enderror"

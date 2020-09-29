@@ -28,6 +28,8 @@ Route::post('/recetas', 'RecetaController@store')->name('recetas.store');
 Route::get('/recetas/{receta}', 'RecetaController@show')->name('recetas.show');
 //con el edit es para cuando se quiere editar registros almacenados en la DB
 Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edit');
+//con el update se puede actualizar de manera parcial o totalitaria los datos de registro
+Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
