@@ -35,6 +35,11 @@
             @endforeach
         </tbody>
     </table>
+    <div class="col-md-12 justify-content-center d-flex">
+        {{$recetas->links()}}<!--con esto automaticamente laravel me genera la paginación de acuerdo a la cantidad de
+            registros que me va a mostrar por pagina, que se le determina en el index de recetacontroller-->
+    </div>
+
 </div>
 @endsection
 

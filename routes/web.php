@@ -33,6 +33,9 @@ Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update
 //con el destroy se puede eliminar de manera totalitaria los datos de registro de la base de datos
 Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
 
+/* con esta linea se reemplaza todas las rutas anteriores y va a funcionar de igual manera.
+Route::resource('recetas', 'RecetaController'); */
+
 //mostrar perfiles
 Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
 //con el edit es para cuando se quiere editar registros almacenados en la DB

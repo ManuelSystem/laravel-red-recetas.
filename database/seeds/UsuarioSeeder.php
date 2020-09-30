@@ -20,7 +20,6 @@ class UsuarioSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'url' => 'http://codigoconjuan.com',
         ]);
-        $user->perfil()->create();
 
         $user = User::create([
             'name' => 'Luis',
@@ -28,6 +27,5 @@ class UsuarioSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'url' => 'http://codigoconjuan.com',
         ]);
-        $user->perfil()->create();
     }
 }

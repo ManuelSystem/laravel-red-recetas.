@@ -27,7 +27,11 @@ class RecetaController extends Controller
     {
         //Auth::user()->recetas->dd(); con esto verifico en pantalla las recetas que tengo del usuario actual logueado
 
-        $recetas = Auth::user()->recetas;
+        //$recetas = Auth::user()->recetas; de esta manera no puedo crear paginación de las recetas en la vista.
+
+        $usuario = Auth::user()->id;
+        //Con esto cargo las recetas pero con paginación desde el modelo
+        $recetas = Receta::where('user_id', $usuario)->paginate(3);
         return view('recetas.index')->with('recetas', $recetas);
     }
 
@@ -126,6 +130,8 @@ class RecetaController extends Controller
      */
     public function edit(Receta $receta)
     {
+        //revisar el policy
+        $this->authorize('view', $receta);
         //De esta manera se obtiene las categorias con modelo
         $categorias = CategoriaReceta::all(['id', 'nombre']);
         //muestra los campos co los datos de la DB a editar
