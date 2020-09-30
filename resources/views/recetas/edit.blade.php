@@ -3,13 +3,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.4/trix.css" integrity="sha512-qjOt5KmyILqcOoRJXb9TguLjMgTLZEgROMxPlf1KuScz0ZMovl0Vp8dnn9bD5dy3CcHW5im+z5gZCKgYek9MPA==" crossorigin="anonymous" />
 @endsection
 @section('botones')
-<a href="{{route('recetas.index')}}" class="btn btn-primary mr-2 text-white">Volver Receta</a>
+<a href="{{route('recetas.index')}}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
+    <svg class="w-6 h-6 icono" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    Volver</a>
 @endsection
 @section('content')
-{{$receta}}
 <h2 class="text-center mb-5">Editar Receta: {{$receta->titulo}}</h2>
 
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center">
     <div class="col-md-8">
         <form method="post" action="{{ route('recetas.update', ['receta' => $receta->id])}}" enctype="multipart/form-data" novalidate>
             @csrf
