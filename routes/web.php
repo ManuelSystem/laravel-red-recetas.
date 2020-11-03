@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//ruta para mostrar la página Principal
+Route::get('/', 'InicioController@index')->name('inicio.index');
 
 //con el index se trabaja para mostrar la ruta de vista principal al usuario logueado
 Route::get('/recetas', 'RecetaController@index')->name('recetas.index');
@@ -44,4 +43,7 @@ Route::get('/perfiles/{perfil}/edit', 'PerfilController@edit')->name('perfiles.e
 Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update');
 Auth::routes();
 
+//almacena los likes de la receta
+//con el store es para cuando se quiere guardar los datos del formulario
+Route::post('/recetas/{receta}', 'LikesController@update')->name('likes.update');
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -29,10 +29,12 @@ class RecetaController extends Controller
 
         //$recetas = Auth::user()->recetas; de esta manera no puedo crear paginación de las recetas en la vista.
 
-        $usuario = Auth::user()->id;
+        $usuario = Auth::user();
         //Con esto cargo las recetas pero con paginación desde el modelo
-        $recetas = Receta::where('user_id', $usuario)->paginate(3);
-        return view('recetas.index')->with('recetas', $recetas);
+        $recetas = Receta::where('user_id', $usuario->id)->paginate(3);
+        return view('recetas.index')
+            ->with('recetas', $recetas)
+            ->with('usuario', $usuario);
     }
 
     /**
@@ -118,8 +120,16 @@ class RecetaController extends Controller
      */
     public function show(Receta $receta)
     {
+        //obtener si el usuario actual le gusta la receta y si está autenticado
+        /*con este codigo lo que se hace es verificar si el usuario esta autenticado primero, entonces se revisa si
+    ya lo tiene como like la receta, si dice que no, retornara un false, de igual si elusuario no está autenticado
+    retornará false también */
+        $like = (auth()->user()) ? auth()->user()->meGusta->contains($receta->id) : false;
+
+        //Pasa la cantidad de likes a la vista
+        $likes = $receta->likes->count();
         //se retorna lo que haya en el metodo show del web.php
-        return view('recetas.show', compact('receta'));
+        return view('recetas.show', compact('receta', 'like', 'likes'));
     }
 
     /**

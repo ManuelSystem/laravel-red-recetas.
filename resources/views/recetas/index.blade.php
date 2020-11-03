@@ -39,7 +39,24 @@
         {{$recetas->links()}}<!--con esto automaticamente laravel me genera la paginación de acuerdo a la cantidad de
             registros que me va a mostrar por pagina, que se le determina en el index de recetacontroller-->
     </div>
+    <h2 class="text-center my-5">Recetas que te Gustan</h2>
+    <div class="col-md-10 mx-auto bg-white p-3">
+        @if (count($usuario->meGusta) > 0)
 
+
+        <ul class="list-group">
+            @foreach ($usuario->meGusta as $receta)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <p> {{$receta->titulo}}</p>
+                    <a href="{{route('recetas.show', ['receta' => $receta->id])}}" class="btn btn-outline-success">Ver</a>
+                </li>
+            @endforeach
+        </ul>
+        @else
+        <P class="text-center">Aún no te gusta ninguna receta... <br>Empieza a marcar las recetas que te gustan y se te
+            mostrarán aquí! </P>
+        @endif
+    </div>
 </div>
 @endsection
 
