@@ -3,10 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import "owl.carousel";
+import VueSweetalert2 from "vue-sweetalert2";
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue');
+window.Vue = require("vue");
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,8 +21,18 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+//con esta linea se configura la habilitación de trix-editor, ya que vue piensa que es un componente, que al no
+//encontrarlo genera errores y no deja utilizar lo que ofrece trix-editor
+Vue.use(VueSweetalert2);
+Vue.config.ignoredElements = ["trix-editor", "trix-toolbar"];
+Vue.component("fecha-receta", require("./components/FechaReceta.vue").default);
+Vue.component(
+    "eliminar-receta",
+    require("./components/EliminarReceta.vue").default
+);
+Vue.component("like-button", require("./components/LikeButton.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -28,5 +40,26 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: "#app"
+});
+
+//carousel con owl
+jQuery(document).ready(function() {
+    jQuery(".owl-carousel").owlCarousel({
+        margin: 10,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    });
 });

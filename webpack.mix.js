@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js("resources/js/app.js", "public/js") //este autoload se agrega aqui como configuración, para que funcione el owl.carousel, que previamente requiere JQuery
+    .autoload({
+        jquery: ["$", "window.jQuery", "jQuery"]
+    })
+    .sass("resources/sass/app.scss", "public/css");
