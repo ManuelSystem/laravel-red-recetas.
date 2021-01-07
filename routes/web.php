@@ -32,6 +32,10 @@ Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update
 //con el destroy se puede eliminar de manera totalitaria los datos de registro de la base de datos
 Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
 
+Route::get('/categoria/{categoriaReceta}', 'CategoriasController@show')->name('categorias.show');
+
+//Buscador de recetas
+Route::get('/buscar', 'RecetaController@search')->name('buscar.show');
 /* con esta linea se reemplaza todas las rutas anteriores y va a funcionar de igual manera.
 Route::resource('recetas', 'RecetaController'); */
 

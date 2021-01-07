@@ -11,6 +11,9 @@ class InicioController extends Controller
 {
     public function index()
     {
+        //mostrar las recetas por cantidad de votos
+        $votadas = Receta::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get();
+
         //obtener las 6 recetas más nuevas, la cantidad que quiero mostrar se lo paso en el take()
         $nuevas = Receta::latest()->take(6)->get();
 
@@ -25,6 +28,6 @@ class InicioController extends Controller
             //el slug permite crear guiones entre cada espacio de palabra como se ve ya en los sitios web, por ejemplo. comida-colombiana
         }
         //return $recetas;
-        return view('inicio.index', compact('nuevas', 'recetas'));
+        return view('inicio.index', compact('nuevas', 'recetas', 'votadas'));
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="contenido-receta">
+<article class="contenido-receta bg-white p-5 shadow">
     <h1 class="text-center mb-4">{{$receta->titulo}}</h1>
     <div class="imagen-receta">
         <img src="/storage/{{$receta->imagen}}" alt="imagen de la receta" class="w-100">

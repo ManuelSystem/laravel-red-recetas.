@@ -207,4 +207,15 @@ class RecetaController extends Controller
 
         return redirect()->action('RecetaController@index');
     }
+    //función para realizar una busqueda
+    public function search(Request $request)
+    {
+        //con esto logro que busque por titulo de receta sin importar si toma un valor despues de otro que no
+        //existe, ej; si la receta es Pizza de pollo y busco pollo, entonces arrojara´como resultado la pizza de pollo
+        $busqueda = $request->get('buscar');
+        $recetas = Receta::where('titulo', 'like', '%' . $busqueda . '%')->paginate(10);
+        $recetas->appends(['buscar' => $busqueda]);
+
+        return view('busquedas.show', compact('recetas', 'busqueda'));
+    }
 }
